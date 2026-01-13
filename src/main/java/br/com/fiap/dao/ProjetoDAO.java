@@ -20,7 +20,6 @@ public class ProjetoDAO {
                     ProjetoTO projeto = new ProjetoTO();
                     projeto.setId(rs.getLong("id_projeto"));
                     projeto.setNome(rs.getString("nm_projeto"));
-                    projeto.setDescricao(rs.getString("dc_projeto"));
                     projeto.setStatus(TipoStatusProjeto.valueOf(rs.getString("st_projeto")));
 
                     projetos.add(projeto);
@@ -45,7 +44,6 @@ public class ProjetoDAO {
             if (rs.next()) {
                 projeto.setId(rs.getLong("id_projeto"));
                 projeto.setNome(rs.getString("nm_projeto"));
-                projeto.setDescricao(rs.getString("dc_projeto"));
                 projeto.setStatus(TipoStatusProjeto.valueOf(rs.getString("st_projeto")));
             } else {
                 return null;
@@ -62,7 +60,6 @@ public class ProjetoDAO {
         String sql = "insert into t_mw_projeto (nm_projeto, dc_projeto, st_projeto) values (?, ?, ?)";
         try(PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
             ps.setString(1, projeto.getNome());
-            ps.setString(2, projeto.getDescricao());
             ps.setString(3, projeto.getStatus().name());
             if (ps.executeUpdate() > 0) {
                 return projeto;
@@ -94,7 +91,6 @@ public class ProjetoDAO {
         String sql = "update t_mw_projeto set nm_projeto = ?, dc_projeto = ?, st_projeto = ? where id_projeto = ?";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
             ps.setString(1, projeto.getNome());
-            ps.setString(2, projeto.getDescricao());
             ps.setString(3, projeto.getStatus().name());
             ps.setLong(4, projeto.getId());
             if (ps.executeUpdate() > 0) {
