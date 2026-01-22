@@ -19,8 +19,6 @@ public class UsuarioDAO {
                     UsuarioTO usuario = new UsuarioTO();
                     usuario.setId(rs.getLong("id_usuario"));
                     usuario.setNome(rs.getString("nm_usuario"));
-                    usuario.setEmail(rs.getString("dc_email"));
-                    usuario.setTipoConta(TipoContaUsuario.valueOf(rs.getString("tp_conta")));
                     usuarios.add(usuario);
                 }
             } else {
@@ -43,8 +41,6 @@ public class UsuarioDAO {
             if(rs.next()) {
                 usuario.setId(rs.getLong("id_usuario"));
                 usuario.setNome(rs.getString("nm_usuario"));
-                usuario.setEmail(rs.getString("dc_email"));
-                usuario.setTipoConta(TipoContaUsuario.valueOf(rs.getString("tp_conta")));
             } else {
                 return null;
             }
@@ -60,8 +56,6 @@ public class UsuarioDAO {
         String sql = "insert into t_mw_usuario (nm_usuario, dc_email, tp_conta) values (?, ?, ?)";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
             ps.setString(1, usuario.getNome());
-            ps.setString(2, usuario.getEmail());
-            ps.setString(3, usuario.getTipoConta().name());
             if (ps.executeUpdate() > 0) {
                 return usuario;
             } else {
@@ -92,8 +86,6 @@ public class UsuarioDAO {
         String sql = "update t_mw_usuario set nm_usuario = ?, dc_email = ?, tp_conta = ? where id_usuario = ?";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
             ps.setString(1, usuario.getNome());
-            ps.setString(2, usuario.getEmail());
-            ps.setString(3, usuario.getTipoConta().name());
             ps.setLong(4, usuario.getId());
             if (ps.executeUpdate() > 0) {
                 return usuario;

@@ -20,7 +20,6 @@ public class ProjetoDAO {
                     ProjetoTO projeto = new ProjetoTO();
                     projeto.setId(rs.getLong("id_projeto"));
                     projeto.setNome(rs.getString("nm_projeto"));
-                    projeto.setStatus(TipoStatusProjeto.valueOf(rs.getString("st_projeto")));
 
                     projetos.add(projeto);
                 }

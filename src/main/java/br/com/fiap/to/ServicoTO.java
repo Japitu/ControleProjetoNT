@@ -8,24 +8,22 @@ import java.time.LocalTime;
 public class ServicoTO {
     private long id;
     private String nome;
-    private long projetoId;
-    private String projetoNome;
-    private String projetoNumero;
+    private ProjetoTO projeto;
     private TipoArea area;
     private LocalTime horasTotal;
     private TipoStatusServico statusServico;
+    private UsuarioTO usuario;
 
     public ServicoTO() {}
 
-    public ServicoTO(long id, String nome, long projetoId, String projetoNome, String projetoNumero, TipoArea area, LocalTime horasTotal, TipoStatusServico statusServico) {
+    public ServicoTO(long id, String nome, ProjetoTO projeto, TipoArea area, LocalTime horasTotal, TipoStatusServico statusServico, UsuarioTO usuario) {
         this.id = id;
         this.nome = nome;
-        this.projetoId = projetoId;
-        this.projetoNome = projetoNome;
-        this.projetoNumero = projetoNumero;
+        this.projeto = projeto;
         this.area = area;
         this.horasTotal = horasTotal;
         this.statusServico = statusServico;
+        this.usuario = usuario;
     }
 
     public long getId() {
@@ -44,28 +42,12 @@ public class ServicoTO {
         this.nome = nome;
     }
 
-    public long getProjetoId() {
-        return projetoId;
+    public ProjetoTO getProjeto() {
+        return projeto;
     }
 
-    public void setProjetoId(long projetoId) {
-        this.projetoId = projetoId;
-    }
-
-    public String getProjetoNome() {
-        return projetoNome;
-    }
-
-    public void setProjetoNome(String projetoNome) {
-        this.projetoNome = projetoNome;
-    }
-
-    public String getProjetoNumero() {
-        return projetoNumero;
-    }
-
-    public void setProjetoNumero(String projetoNumero) {
-        this.projetoNumero = projetoNumero;
+    public void setProjeto(ProjetoTO projeto) {
+        this.projeto = projeto;
     }
 
     public TipoArea getArea() {
@@ -90,5 +72,13 @@ public class ServicoTO {
 
     public void setStatusServico(TipoStatusServico statusServico) {
         this.statusServico = statusServico;
+    }
+
+    public UsuarioTO getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioTO usuario) {
+        this.usuario = usuario;
     }
 }
