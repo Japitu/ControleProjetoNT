@@ -8,17 +8,20 @@ import java.time.LocalTime;
 public class ServicoTO {
     private long id;
     private String nome;
-    private ProjetoTO projeto;
+    private String numero;
     private TipoArea area;
     private TipoStatusServico statusServico;
+    private ProjetoTO projeto;
     private UsuarioTO usuario;
+
 
 
     public ServicoTO() {}
 
-    public ServicoTO(long id, String nome, ProjetoTO projeto, TipoArea area, TipoStatusServico statusServico, UsuarioTO usuario) {
+    public ServicoTO(long id, String nome, ProjetoTO projeto, TipoArea area, TipoStatusServico statusServico, UsuarioTO usuario, String numero) {
         this.id = id;
         this.nome = nome;
+        this.numero = numero;
         this.projeto = projeto;
         this.area = area;
         this.statusServico = statusServico;
@@ -39,6 +42,14 @@ public class ServicoTO {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
     public ProjetoTO getProjeto() {
