@@ -35,9 +35,7 @@ public class ConnectionFactory {
             }
 
             connection = DriverManager.getConnection(url, user, password);
-            System.out.println("URL: " + url);
-            System.out.println("USER: " + user);
-            System.out.println("PASSWORD: " + password);
+
             return connection;
 
         } catch (SQLException e) {

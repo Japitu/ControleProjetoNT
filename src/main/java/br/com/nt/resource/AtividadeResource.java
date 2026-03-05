@@ -1,7 +1,6 @@
 package br.com.nt.resource;
 
 import br.com.nt.bo.AtividadeBO;
-import br.com.nt.dao.AtividadeDAO;
 import br.com.nt.to.AtividadeTO;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
