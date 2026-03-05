@@ -24,12 +24,6 @@ public class ConnectionFactory {
             }
             Class.forName("org.postgresql.Driver");
 
-            /*
-            * private static final String URL = "jdbc:postgresql://localhost:5432/receita_cadastro";
-            * private static final String username = "root";
-            * private static final String password = "123456";
-            * */
-
             String url = System.getenv("DB_URL");
             String user = System.getenv("DB_USER");
             String password = System.getenv("DB_PASSWORD");

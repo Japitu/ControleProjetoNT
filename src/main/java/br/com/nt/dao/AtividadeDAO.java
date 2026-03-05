@@ -58,7 +58,7 @@ public class AtividadeDAO {
         ServicoTO servico = new ServicoTO();
         String sql = "select a.*, u.nm_usuario, EXTRACT(EPOCH FROM (a.hr_fim_atividade - a.hr_inicio_atividade)) AS tempo_segundos from tb_atividade a inner join tb_usuario u on a.id_usuario = u.id_usuario inner join tb_servico s on a.id_servico = s.id_servico where a.id_horas = ?";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
-            ps.setInt(1, id);
+            ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 atividade.setId(rs.getLong("id_atividade"));
