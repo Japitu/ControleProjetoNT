@@ -19,25 +19,31 @@ public class ConnectionFactory {
 
     public static Connection getConnection() {
         try {
+
             if (connection != null && !connection.isClosed()) {
                 return connection;
             }
+
             Class.forName("org.postgresql.Driver");
 
             String url = System.getenv("DB_URL");
             String user = System.getenv("DB_USER");
             String password = System.getenv("DB_PASSWORD");
 
-            if(url == null || user == null || password == null) {
+            if (url == null || user == null || password == null) {
                 throw new RuntimeException("Variáveis de ambiente do banco não configuradas!");
             }
 
             connection = DriverManager.getConnection(url, user, password);
+            System.out.println("URL: " + url);
+            System.out.println("USER: " + user);
+            System.out.println("PASSWORD: " + password);
+            return connection;
+
         } catch (SQLException e) {
-            System.out.println("Erro de SQL: " + e.getMessage());
+            throw new RuntimeException("Erro ao conectar no banco: " + e.getMessage(), e);
         } catch (ClassNotFoundException e) {
-            System.out.println("Erro nome da classe: " + e.getMessage());
+            throw new RuntimeException("Driver PostgreSQL não encontrado", e);
         }
-        return connection;
     }
 }
