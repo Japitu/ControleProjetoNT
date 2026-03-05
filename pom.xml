@@ -63,6 +63,16 @@
             <groupId>org.apache.camel.quarkus</groupId>
             <artifactId>camel-quarkus-bean-validator</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.3</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-jdbc-postgresql</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
