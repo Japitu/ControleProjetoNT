@@ -1,6 +1,7 @@
 package br.com.nt.to;
 
 import br.com.nt.enums.TipoArea;
+import br.com.nt.enums.TipoServico;
 import br.com.nt.enums.TipoStatusServico;
 
 import java.time.LocalTime;
@@ -10,22 +11,23 @@ public class ServicoTO {
     private String nome;
     private String numero;
     private TipoArea area;
-    private TipoStatusServico statusServico;
+    private TipoServico tipo;
+    private TipoStatusServico status;
     private ProjetoTO projeto;
     private UsuarioTO usuario;
 
 
-
     public ServicoTO() {}
 
-    public ServicoTO(long id, String nome, ProjetoTO projeto, TipoArea area, TipoStatusServico statusServico, UsuarioTO usuario, String numero) {
+    public ServicoTO(long id, String nome, ProjetoTO projeto, TipoArea area, TipoServico tipo, TipoStatusServico status, UsuarioTO usuario, String numero) {
         this.id = id;
         this.nome = nome;
         this.numero = numero;
-        this.projeto = projeto;
         this.area = area;
-        this.statusServico = statusServico;
+        this.tipo = tipo;
+        this.status = status;
         this.usuario = usuario;
+        this.projeto = projeto;
     }
 
     public long getId() {
@@ -68,12 +70,20 @@ public class ServicoTO {
         this.area = area;
     }
 
-    public TipoStatusServico getStatusServico() {
-        return statusServico;
+    public TipoServico getTipo() {
+        return tipo;
     }
 
-    public void setStatusServico(TipoStatusServico statusServico) {
-        this.statusServico = statusServico;
+    public void setTipo(TipoServico tipo) {
+        this.tipo = tipo;
+    }
+
+    public TipoStatusServico getStatus() {
+        return status;
+    }
+
+    public void setStatus(TipoStatusServico status) {
+        this.status = status;
     }
 
     public UsuarioTO getUsuario() {

@@ -1,6 +1,7 @@
 package br.com.nt.dao;
 
 import br.com.nt.enums.TipoArea;
+import br.com.nt.enums.TipoServico;
 import br.com.nt.enums.TipoStatusServico;
 import br.com.nt.to.ProjetoTO;
 import br.com.nt.to.ServicoTO;
@@ -27,8 +28,9 @@ public class ServicoDAO {
                     servico.setId(rs.getLong("id_servico"));
                     servico.setNome(rs.getString("nm_servico"));
                     servico.setNumero(rs.getString("nr_servico"));
-                    servico.setStatusServico(TipoStatusServico.valueOf(rs.getString("st_servico")));
+                    servico.setStatus(TipoStatusServico.valueOf(rs.getString("st_servico")));
                     servico.setArea(TipoArea.valueOf(rs.getString("ar_servico")));
+                    servico.setTipo(TipoServico.valueOf(rs.getString("tp_servico")));
 
                     projeto.setId(rs.getLong("id_projeto"));
                     projeto.setNome(rs.getString("nm_projeto"));
@@ -63,8 +65,9 @@ public class ServicoDAO {
                 servico.setId(rs.getLong("id_servico"));
                 servico.setNome(rs.getString("nm_servico"));
                 servico.setNumero(rs.getString("nr_servico"));
-                servico.setStatusServico(TipoStatusServico.valueOf(rs.getString("st_servico")));
+                servico.setStatus(TipoStatusServico.valueOf(rs.getString("st_servico")));
                 servico.setArea(TipoArea.valueOf(rs.getString("ar_servico")));
+                servico.setTipo(TipoServico.valueOf(rs.getString("tp_servico")));
 
                 projeto.setId(rs.getLong("id_projeto"));
                 projeto.setNome(rs.getString("nm_projeto"));
@@ -86,14 +89,15 @@ public class ServicoDAO {
     }
 
     public ServicoTO save(ServicoTO servico) {
-        String sql = "insert into tb_servico (nm_servico, nr_servico, id_projeto, st_servico, ar_servico, id_usuario) values (?, ?, ?, ?, ?, ?)";
+        String sql = "insert into tb_servico (nm_servico, nr_servico, id_projeto, st_servico, ar_servico, tp_servico, id_usuario) values (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
             ps.setString(1, servico.getNome());
             ps.setString(2, servico.getNumero());
             ps.setLong(3, servico.getProjeto().getId());
-            ps.setString(4, servico.getStatusServico().toString());
+            ps.setString(4, servico.getStatus().toString());
             ps.setString(5, servico.getArea().toString());
-            ps.setLong(6, servico.getUsuario().getId());
+            ps.setString(6, servico.getTipo().toString());
+            ps.setLong(7, servico.getUsuario().getId());
             if (ps.executeUpdate() > 0) {
                 return servico;
             } else {
@@ -121,15 +125,16 @@ public class ServicoDAO {
     }
 
     public ServicoTO update(ServicoTO servico) {
-        String sql = "update tb_servico set nm_servico = ?, nr_servico = ?, id_projeto = ?, st_servico = ?, ar_servico = ?, id_usuario = ? where id_servico = ?";
+        String sql = "update tb_servico set nm_servico = ?, nr_servico = ?, id_projeto = ?, st_servico = ?, ar_servico = ?, tp_servico = ?, id_usuario = ? where id_servico = ?";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
             ps.setString(1, servico.getNome());
             ps.setString(2, servico.getNumero());
             ps.setLong(3, servico.getProjeto().getId());
-            ps.setString(4, servico.getStatusServico().toString());
+            ps.setString(4, servico.getStatus().toString());
             ps.setString(5, servico.getArea().toString());
-            ps.setLong(6, servico.getUsuario().getId());
-            ps.setLong(7, servico.getId());
+            ps.setString(6, servico.getTipo().toString());
+            ps.setLong(7, servico.getUsuario().getId());
+            ps.setLong(8, servico.getId());
             if (ps.executeUpdate() > 0) {
                 return servico;
             } else {
