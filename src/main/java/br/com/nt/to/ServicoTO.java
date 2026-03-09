@@ -13,19 +13,21 @@ public class ServicoTO {
     private TipoArea area;
     private TipoServico tipo;
     private TipoStatusServico status;
+    private boolean arquivado;
     private ProjetoTO projeto;
     private UsuarioTO usuario;
 
 
     public ServicoTO() {}
 
-    public ServicoTO(long id, String nome, ProjetoTO projeto, TipoArea area, TipoServico tipo, TipoStatusServico status, UsuarioTO usuario, String numero) {
+    public ServicoTO(long id, String nome, ProjetoTO projeto, TipoArea area, TipoServico tipo, TipoStatusServico status, boolean arquivado, UsuarioTO usuario, String numero) {
         this.id = id;
         this.nome = nome;
         this.numero = numero;
         this.area = area;
         this.tipo = tipo;
         this.status = status;
+        this.arquivado = arquivado;
         this.usuario = usuario;
         this.projeto = projeto;
     }
@@ -76,6 +78,14 @@ public class ServicoTO {
 
     public void setTipo(TipoServico tipo) {
         this.tipo = tipo;
+    }
+
+    public boolean isArquivado() {
+        return arquivado;
+    }
+
+    public void setArquivado(boolean arquivado) {
+        this.arquivado = arquivado;
     }
 
     public TipoStatusServico getStatus() {
